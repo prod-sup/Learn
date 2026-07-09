@@ -2,25 +2,30 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LEARN POKER — Master Every Position</title>
     <script>
     /* ── PORTÃO DE ACESSO Suprema OS: o login mora no hub. Sem sessão
-       'suprema_session_v1', volta pro hub (2 níveis acima: /learn-poker/dist/). ── */
+       'suprema_session_v1', volta pro hub. O caminho do hub depende de onde
+       o build está hospedado: dentro do painel (learn-poker/dist → 2 níveis
+       acima) ou no site /Learn/ do GitHub Pages (hub em /painelpoker/). ── */
     (function(){
+      var hub = location.pathname.toLowerCase().indexOf('/learn/') === 0
+        ? '/painelpoker/hub.html'
+        : '../../hub.html';
       try{
         var s = JSON.parse(localStorage.getItem('suprema_session_v1') || 'null');
-        if(!s || !s.email || !s.expiresAt || Date.now() > s.expiresAt) location.replace('../../hub.html');
-      }catch(e){ location.replace('../../hub.html'); }
+        if(!s || !s.email || !s.expiresAt || Date.now() > s.expiresAt) location.replace(hub);
+      }catch(e){ location.replace(hub); }
     })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BFHCFzXc.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-QTnfLwEv.js">
-    <link rel="modulepreload" crossorigin href="/assets/react-BfLt3tvf.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-C3aGhtlb.css">
+    <script type="module" crossorigin src="./assets/index-DrFsEhUo.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-QTnfLwEv.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-BfLt3tvf.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-C3aGhtlb.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
